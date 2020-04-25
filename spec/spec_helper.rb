@@ -1,5 +1,14 @@
+
+ENV["RAILS_ENV"] ||= "test"
+
+require "rails/all"
+#require "dummy/application"
+#require "rspec/rails"
+
 require "bundler/setup"
 require "authentify"
+
+#Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure

@@ -1,6 +1,5 @@
 require "spec_helper"
-
-require_relative "../lib/authentify/configuration"
+require "pry"
 
 RSpec.describe Authentify::Configuration do
   subject(:config) { Authentify.configuration }

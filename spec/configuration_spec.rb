@@ -1,5 +1,4 @@
 require "spec_helper"
-require "pry"
 
 RSpec.describe Authentify::Configuration do
   subject(:config) { Authentify.configuration }
@@ -29,17 +28,19 @@ RSpec.describe Authentify::Configuration do
 
     context "when no user model is specified" do
       it "defaults to User" do
-        expect(user_model).to eq("User")
+        expect(user_model).to eq(Authentify::User)
       end
     end
 
     context "when a custom user model is specified" do
-      let(:custom_user_model) { "CustomUser" }
+      before(:each) { CustomUser = Class.new }
 
-      before { Authentify.configure { |config| config.user_model = custom_user_model } }
+      after(:each) { Object.send(:remove_const, :CustomUser) }
+
+      before { Authentify.configure { |config| config.user_model = CustomUser } }
 
       it "uses the custom user model" do
-        expect(user_model).to eq(custom_user_model)
+        expect(user_model).to eq(CustomUser)
       end
     end
   end

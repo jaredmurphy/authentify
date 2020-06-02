@@ -1,5 +1,6 @@
 require "authentify/version"
 require "authentify/configuration"
+require "authentify/user"
 
 module Authentify
   class Error < StandardError; end
